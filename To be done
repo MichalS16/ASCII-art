@@ -1,0 +1,13 @@
+Dokumentace
+user interface
+)about
+)generate
+ascii generator
+main
+knihovny začlenit
+https://github.com/TomSchimansky/CustomTkinter/wiki/CTkEntry
+        pip install customtkinter
+https://pillow.readthedocs.io/en/stable/
+        pip install Pillow
+https://pypi.org/project/requests/
+        pip install requests
