@@ -1,5 +1,5 @@
 Dokumentace
-ascii generator
+size
 
 knihovny začlenit
 https://pypi.org/project/customtkinter/
@@ -8,5 +8,3 @@ https://pypi.org/project/Pillow/
         pip install Pillow
 https://pypi.org/project/requests/
         pip install requests
-https://pypi.org/project/subprocess.run/
-        pip install subprocess.run
