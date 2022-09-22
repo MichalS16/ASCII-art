@@ -9,5 +9,6 @@ created by: Michal S.
 # import UI and generator of ASCII
 from user_interface import *
 
+# run program
 if __name__ == "__main__":
     run()
