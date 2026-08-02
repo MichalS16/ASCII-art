@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# least-privilege: this workflow only reads the repo and uploads artifacts
+permissions:
+  contents: read
+
+# cancel superseded runs from rapid pushes to the same branch
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # Windows-only
+    runs-on: windows-latest
+    # fail fast
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Lint
+        run: uv run ruff check .
+
+      # ruff 
+      - name: Test with coverage
+        run: uv run pytest --cov=ascii_art --cov-report=term-missing --cov-report=html --cov-branch --cov-fail-under=100
+
+      # Debugged from the Actions UI
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: coverage-report
+          path: htmlcov/
+          retention-days: 14
