@@ -3,13 +3,13 @@ name = "ascii-art"
 version = "1.0.0"
 description = "Convert images (.png/.jpg/.jpeg/.webp) into ASCII-art text-images via a tkinter GUI."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
     { name = "MichalS16" },
 ]
 dependencies = [
     "customtkinter",
-    "pillow",
+    "pillow>=13.0.0",
     "requests",
 ]
 
@@ -43,7 +43,7 @@ exclude_lines = [
 
 [tool.ruff]
 line-length = 160
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "UP", "B"]
